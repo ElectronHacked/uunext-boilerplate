@@ -1,0 +1,24 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "components": "./src/components",
+          "models": "./src/models",
+          "styles": "./src/styles",
+        }
+      }
+    ],
+    ["babel-plugin-styled-components"],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
+  ]
+}
