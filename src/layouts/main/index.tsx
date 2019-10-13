@@ -1,60 +1,58 @@
 import React, { useState, FC, ReactNode } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import { LayoutHeader, LayoutHeaderTitle } from './styled';
+import { LayoutHeader, LayoutHeaderTitle, SidebarMenuLink } from './styled';
+import { ILayoutHeadProps } from 'models/layoutHeadProps';
+import Head from './head';
+import { APP_ROUTES } from 'routes';
+import { IRoute } from 'models';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-interface IMainLayoutProps {
-  title?: ReactNode;
+interface IMainLayoutProps extends ILayoutHeadProps {
   children?: ReactNode;
 }
 
 const MainLayout: FC<IMainLayoutProps> = ({ title, children }) => {
   const [collapsed, toggleCollapsed] = useState(false);
 
+  const renderMenuItem = (route: IRoute) => {
+    const { name, icon, linkTo, displayName, children } = route;
+    if (children && children.length) {
+      return (
+        <SubMenu
+          key={name}
+          title={
+            <span>
+              {icon && <Icon type={icon} />}
+              <span>
+                <SidebarMenuLink href={linkTo}>{displayName}</SidebarMenuLink>
+              </span>
+            </span>
+          }
+        >
+          {children.map(child => renderMenuItem(child))}
+        </SubMenu>
+      );
+    }
+
+    return (
+      <Menu.Item key={name}>
+        {icon && <Icon type={icon} />}
+        <span>
+          <SidebarMenuLink href={linkTo}>{displayName}</SidebarMenuLink>
+        </span>
+      </Menu.Item>
+    );
+  };
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <Head title={title} />
       <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
         <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1">
-            <Icon type="pie-chart" />
-            <span>Option 1</span>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Icon type="desktop" />
-            <span>Option 2</span>
-          </Menu.Item>
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="user" />
-                <span>User</span>
-              </span>
-            }
-          >
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <Icon type="team" />
-                <span>Team</span>
-              </span>
-            }
-          >
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="9">
-            <Icon type="file" />
-            <span>File</span>
-          </Menu.Item>
+        <Menu theme="dark" defaultSelectedKeys={[APP_ROUTES[0].name]} mode="inline">
+          {APP_ROUTES.map(route => renderMenuItem(route))}
         </Menu>
       </Sider>
       <Layout>

@@ -9,6 +9,7 @@
           "components": "./src/components",
           "layouts": "./src/layouts",
           "models": "./src/models",
+          "routes": "./src/routes",
           "styles": "./src/styles",
         }
       }

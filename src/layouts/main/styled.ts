@@ -12,3 +12,7 @@ export const LayoutHeaderTitle = styled.h1`
   margin: unset;
   font-weight: 600;
 `;
+
+export const SidebarMenuLink = styled.a`
+  color: #fff;
+`;
