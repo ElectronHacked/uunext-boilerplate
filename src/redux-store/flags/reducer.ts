@@ -8,8 +8,8 @@ const initialState: IFlagsState = {
   actioned: [],
 };
 
-const flagToggle = (array: any[], value: any, flag?: boolean) => {
-  return flag ? Array.from(new Set([...array, value])) : array.filter(val => val !== value);
+const flagToggle = (array?: any[], value?: any, flag?: boolean) => {
+  if (array) return flag ? Array.from(new Set([...array, value])) : array.filter(val => val !== value);
 };
 
 const flagsReducer = (state: IFlagsState = initialState, { type, payload }: ReduxActions.Action<IFlagsState>) => {
@@ -20,7 +20,7 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
 
       return {
         ...state,
-        isInProgress: isInProgress && flagToggle(isInProgress, isInProgressPayload, booleanPayload),
+        isInProgress: flagToggle(isInProgress, isInProgressPayload, booleanPayload),
       };
     }
     case SET_SUCCEEDED_FLAG: {
@@ -29,7 +29,7 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
 
       return {
         ...state,
-        succeeded: succeeded && flagToggle(succeeded, isInProgressPayload, booleanPayload),
+        succeeded: flagToggle(succeeded, isInProgressPayload, booleanPayload),
       };
     }
     case SET_FAILED_FLAG: {
@@ -38,7 +38,7 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
 
       return {
         ...state,
-        failed: failed && flagToggle(failed, failedPayload, booleanPayload),
+        failed: flagToggle(failed, failedPayload, booleanPayload),
       };
     }
     case SET_ACTIONED: {
@@ -47,7 +47,7 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
 
       return {
         ...state,
-        isInProgress: actioned && flagToggle(actioned, actionedPayload, booleanPayload),
+        isInProgress: flagToggle(actioned, actionedPayload, booleanPayload),
       };
     }
 
