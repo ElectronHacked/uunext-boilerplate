@@ -54,8 +54,6 @@ module.exports = withPlugins(
         });
       }
 
-      // config.resolve.alias['components'] = path.join(__dirname, 'components')
-
       return config;
     },
   }

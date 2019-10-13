@@ -1,4 +1,4 @@
-import {IRoute} from 'models/route';
+import { IRoute } from 'models/route';
 
 //#region Routes declaration
 const HOME_PAGE_URL = '/';
