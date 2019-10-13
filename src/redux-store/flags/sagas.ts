@@ -1,11 +1,11 @@
 import { all, takeLatest } from '@redux-saga/core/effects';
 
-import { GOING_TO_ROUTE } from './constants';
+import { RESET_ALL_FLAGS } from './constants';
 
-function* switchRouteSaga() {
-  console.log('switchRouteSaga.............');
+function* resetAllFlagsSaga() {
+  console.log('resetAllFlagsSaga.............');
 }
 
 export default function* registrationSaga() {
-  yield all([takeLatest(GOING_TO_ROUTE, switchRouteSaga)]);
+  yield all([takeLatest(RESET_ALL_FLAGS, resetAllFlagsSaga)]);
 }
