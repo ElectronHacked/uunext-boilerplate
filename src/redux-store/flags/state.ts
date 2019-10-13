@@ -4,15 +4,8 @@ export type IFlagFailedFlags = '';
 export type IFlagActionedFlags = '';
 
 export interface IFlagsState {
-  readonly isInProgress?: IFlagProgressFlags[];
-  readonly succeeded?: IFlagSucceededFlags[];
-  readonly failed?: IFlagFailedFlags[];
-  readonly actioned?: IFlagActionedFlags[];
-
-  readonly isInProgressPayload?: IFlagProgressFlags;
-  readonly succeededPayload?: IFlagSucceededFlags;
-  readonly failedPayload?: IFlagFailedFlags;
-  readonly actionedPayload?: IFlagActionedFlags;
-
-  readonly booleanPayload?: boolean;
+  readonly isInProgress?: { [key in IFlagProgressFlags]?: boolean };
+  readonly succeeded?: { [key in IFlagSucceededFlags]?: boolean };
+  readonly failed?: { [key in IFlagFailedFlags]?: boolean };
+  readonly actioned?: { [key in IFlagActionedFlags]?: boolean };
 }
