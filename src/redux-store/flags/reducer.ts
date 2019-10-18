@@ -26,11 +26,7 @@ const initialState: IFlagsState = {
   actioned: {},
 };
 
-const hasFlag = (flags: string[], flag: string) => {
-  const F = flag.toUpperCase();
-
-  return flags.map(f => f.toUpperCase()).includes(F);
-};
+const hasFlag = (flags: string, flag: string) => new RegExp(flag, 'i').test(flags);
 
 const isThisFlagAction = (type: string, flag: string) => new RegExp(flag, 'i').test(type);
 
@@ -40,10 +36,7 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
   if (flaggableMatch) {
     // This is a flaggable action, so we need to determin what kind of flag it is so that we can update the state acordingly
 
-    const FLAGS = type
-      .substr(flaggableMatch.index)
-      .split('')
-      .map(flag => flag.toUpperCase()); // ['P', 'S', 'F', 'A']
+    const FLAGS = type.substr(flaggableMatch.index);
 
     // ["FETCH_USER_SUCCESS", "FETCH_USER", "SUCCESS", index: 0, input: "FETCH_USER_SUCCESS_F__ISFA", groups: undefined]
     const actionMatch = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(type);
