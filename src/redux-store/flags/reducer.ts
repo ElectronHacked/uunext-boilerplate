@@ -18,6 +18,7 @@ import {
   RESET_ACTIONED_FLAGS,
   RESET_ALL_FLAGS,
 } from './constants';
+import camelcase from 'camelcase';
 
 const initialState: IFlagsState = {
   isInProgress: {},
@@ -34,14 +35,15 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
   const flaggableMatch = /__F__/.exec(type);
 
   if (flaggableMatch) {
-    // This is a flaggable action, so we need to determin what kind of flag it is so that we can update the state acordingly
+    // debugger;
+    // This is a flaggable action, so we need to determinE what kind of flag it is so that we can update the state acordingly
 
-    const FLAGS = type.substr(flaggableMatch.index);
+    const FLAGS = type.split('__F__')[1];
 
-    // ["FETCH_USER_SUCCESS", "FETCH_USER", "SUCCESS", index: 0, input: "FETCH_USER_SUCCESS_F__ISFA", groups: undefined]
+    // ["FETCH_USER_SUCCESS", "FETCH_USER", "SUCCESS", index: 0, input: "FETCH_USER_SUCCESS__F__FISA", groups: undefined]
     const actionMatch = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(type);
 
-    const FLAG_ACTION = (actionMatch && actionMatch[1]) || ''; //  "FETCH_USER"
+    const FLAG_ACTION_KEY = camelcase((actionMatch && actionMatch[1]) || ''); //  "FETCH_USER"
 
     const { isInProgress, succeeded, failed, actioned } = state;
 
@@ -50,28 +52,32 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
     if (hasFlag(FLAGS, IS_IN_PROGRESS_IDENTIFIER) && isThisFlagAction(type, IS_IN_PROGRESS_FLAG)) {
       currentState = {
         ...state,
-        isInProgress: { ...isInProgress, [FLAG_ACTION]: true },
+        isInProgress: { ...isInProgress, [FLAG_ACTION_KEY]: true },
+        succeeded: { ...succeeded, [FLAG_ACTION_KEY]: false },
+        failed: { ...failed, [FLAG_ACTION_KEY]: false },
       };
     }
 
     if (hasFlag(FLAGS, SUCCEEDED_IDENTIFIER) && isThisFlagAction(type, SUCCEEDED_FLAG)) {
       currentState = {
         ...state,
-        succeeded: { ...succeeded, [FLAG_ACTION]: true },
+        succeeded: { ...succeeded, [FLAG_ACTION_KEY]: true },
+        isInProgress: { ...isInProgress, [FLAG_ACTION_KEY]: false },
       };
     }
 
     if (hasFlag(FLAGS, FAILED_IDENTIFIER) && isThisFlagAction(type, FAILED_FLAG)) {
       currentState = {
         ...state,
-        failed: { ...failed, [FLAG_ACTION]: true },
+        failed: { ...failed, [FLAG_ACTION_KEY]: true },
+        isInProgress: { ...isInProgress, [FLAG_ACTION_KEY]: false },
       };
     }
 
     if (hasFlag(FLAGS, ACTIONED_IDENTIFIER) && isThisFlagAction(type, ACTIONED_FLAG)) {
       currentState = {
         ...state,
-        actioned: { ...actioned, [FLAG_ACTION]: true },
+        actioned: { ...actioned, [FLAG_ACTION_KEY]: true },
       };
     }
 

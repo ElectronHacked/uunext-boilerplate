@@ -1,8 +1,9 @@
-import { all, takeLatest } from '@redux-saga/core/effects';
+import { all, takeLatest, delay } from '@redux-saga/core/effects';
 
 import { GOING_TO_ROUTE } from './constants';
 
 function* switchRouteSaga() {
+  yield delay(0);
   console.log('switchRouteSaga.............');
 }
 

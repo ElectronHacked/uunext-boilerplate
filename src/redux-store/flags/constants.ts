@@ -31,7 +31,7 @@ export const RESET_ALL_FLAGS = 'RESET_ALL_FLAGS';
 //#endregion
 
 //#region Identifiers
-export const IS_IN_PROGRESS_IDENTIFIER = 'P';
+export const IS_IN_PROGRESS_IDENTIFIER = 'I';
 
 export const SUCCEEDED_IDENTIFIER = 'S';
 

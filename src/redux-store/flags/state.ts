@@ -1,7 +1,7 @@
-export type IFlagProgressFlags = '' | 'checkAuth';
-export type IFlagSucceededFlags = '';
-export type IFlagFailedFlags = '';
-export type IFlagActionedFlags = '';
+export type IFlagProgressFlags = 'fetchPosts';
+export type IFlagSucceededFlags = 'fetchPosts';
+export type IFlagFailedFlags = 'fetchPosts';
+export type IFlagActionedFlags = 'fetchPosts';
 
 export interface IFlagsState {
   readonly isInProgress?: { [key in IFlagProgressFlags]?: boolean };

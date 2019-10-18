@@ -1,8 +1,9 @@
-import { all, takeLatest } from '@redux-saga/core/effects';
+import { all, takeLatest, delay } from '@redux-saga/core/effects';
 
 import { RESET_ALL_FLAGS } from './constants';
 
 function* resetAllFlagsSaga() {
+  yield delay(250);
   console.log('resetAllFlagsSaga.............');
 }
 

@@ -9,6 +9,7 @@
           "components": "./src/components",
           "layouts": "./src/layouts",
           "models": "./src/models",
+          "redux-store": "./src/redux-store",
           "routes": "./src/routes",
           "styles": "./src/styles",
         }
