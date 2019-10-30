@@ -6,10 +6,11 @@ import { fetchPostsRequest, fetchPostsSuccess } from 'redux-store/posts/actions'
 // import { createStructuredSelector } from 'reselect';
 // import { selectIsInProgressFlags } from 'redux-store/flags/selectors';
 
-const Title = styled.h1`
+const Heading = styled.h1`
   color: red;
   font-size: 30px;
 `;
+const Body = styled.div``;
 
 export default () => {
   const dispatch = useDispatch();
@@ -24,11 +25,8 @@ export default () => {
 
   return (
     <Page title="Dashboard">
-      <Title>This is the dashboard for unnext boilerplate</Title>
+      <Heading>This is the dashboard for unnext boilerplate</Heading>
+      <Body>This is the body of the page</Body>
     </Page>
   );
 };
-
-// const mapStateToProps = createStructuredSelector({
-//   isFetchingPosts: selectIsInProgressFlags('fetchPosts'),
-// });
