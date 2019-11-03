@@ -12,6 +12,7 @@
           "redux-store": "./src/redux-store",
           "routes": "./src/routes",
           "styles": "./src/styles",
+          "utils": "./src/utils",
         }
       }
     ],
