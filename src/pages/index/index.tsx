@@ -3,17 +3,31 @@ import styled from 'styled-components';
 import { Page } from 'components';
 import { useDispatch } from 'react-redux';
 import { fetchPostsRequest, fetchPostsSuccess } from 'redux-store/posts/actions';
-// import { createStructuredSelector } from 'reselect';
-// import { selectIsInProgressFlags } from 'redux-store/flags/selectors';
+import { useGet } from 'restful-react';
 
 const Heading = styled.h1`
   color: red;
   font-size: 30px;
 `;
+
+const Loading = styled.h1`
+  color: red;
+  font-size: 30px;
+`;
+
+const Error = styled.h1`
+  color: red;
+  font-size: 30px;
+`;
+
 const Body = styled.div``;
 
 export default () => {
   const dispatch = useDispatch();
+
+  const { data: randomDogImage, loading, error } = useGet({
+    path: 'breeds/image/random',
+  });
 
   useLayoutEffect(() => {
     dispatch(fetchPostsRequest());
@@ -26,7 +40,11 @@ export default () => {
   return (
     <Page title="Dashboard">
       <Heading>This is the dashboard for unnext boilerplate</Heading>
-      <Body>This is the body of the page</Body>
+      <Body>
+        {loading && <Loading>Loading...</Loading>}
+        {error && <Error>Opps! Error loading a gif</Error>}
+        {randomDogImage && <img alt="Here's a good boye!" src={randomDogImage && randomDogImage.message} />}
+      </Body>
     </Page>
   );
 };

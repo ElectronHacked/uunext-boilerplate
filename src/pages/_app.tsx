@@ -5,6 +5,7 @@ import { configureStore } from 'redux-store/createStore';
 import CustomErrorBoundary from 'components/global/customErrorBoundary';
 import { PersistGate } from 'redux-persist/integration/react';
 import { initGA, logPageView } from 'utils/analytics';
+const { RestfulProvider } = require('restful-react');
 
 const { store, persistor } = configureStore();
 
@@ -28,7 +29,9 @@ class MyApp extends App {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <CustomErrorBoundary>
-            <Component {...pageProps} />
+            <RestfulProvider base="https://dog.ceo/api">
+              <Component {...pageProps} />
+            </RestfulProvider>
           </CustomErrorBoundary>
         </PersistGate>
       </Provider>
