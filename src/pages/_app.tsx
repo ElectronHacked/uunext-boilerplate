@@ -5,7 +5,7 @@ import { configureStore } from 'redux-store/createStore';
 import CustomErrorBoundary from 'components/global/customErrorBoundary';
 import { PersistGate } from 'redux-persist/integration/react';
 import { initGA, logPageView } from 'utils/analytics';
-const { RestfulProvider } = require('restful-react');
+import { RestfulProvider } from 'restful-react';
 
 const { store, persistor } = configureStore();
 

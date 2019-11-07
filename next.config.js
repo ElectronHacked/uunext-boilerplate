@@ -4,6 +4,12 @@ const withSass = require('@zeit/next-sass');
 const fs = require('fs');
 const path = require('path');
 const sassExtract = require('sass-extract');
+const {
+  WebpackBundleSizeAnalyzerPlugin
+} = require('webpack-bundle-size-analyzer');
+const {
+  ANALYZE
+} = process.env
 
 const themeVariables = sassExtract.renderSync({
   file: './src/styles/_theme.scss',
@@ -53,6 +59,10 @@ module.exports = withPlugins(
           test: antStyles,
           use: 'null-loader',
         });
+      }
+
+      if (ANALYZE) {
+        config.plugins.push(new WebpackBundleSizeAnalyzerPlugin('stats.txt'))
       }
 
       return config;

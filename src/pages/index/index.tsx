@@ -4,6 +4,7 @@ import { Page } from 'components';
 import { useDispatch } from 'react-redux';
 import { fetchPostsRequest, fetchPostsSuccess } from 'redux-store/posts/actions';
 import { useGet } from 'restful-react';
+import { Button } from 'antd';
 
 const Heading = styled.h1`
   color: red;
@@ -25,7 +26,7 @@ const Body = styled.div``;
 export default () => {
   const dispatch = useDispatch();
 
-  const { data: randomDogImage, loading, error } = useGet({
+  const { data: randomDogImage, loading, error, refetch } = useGet({
     path: 'breeds/image/random',
   });
 
@@ -41,9 +42,16 @@ export default () => {
     <Page title="Dashboard">
       <Heading>This is the dashboard for unnext boilerplate</Heading>
       <Body>
-        {loading && <Loading>Loading...</Loading>}
-        {error && <Error>Opps! Error loading a gif</Error>}
-        {randomDogImage && <img alt="Here's a good boye!" src={randomDogImage && randomDogImage.message} />}
+        <Button onClick={() => refetch()} loading={loading} size="large" type="primary">
+          Get a good boye!
+        </Button>
+        <div>
+          {loading && <Loading>Loading...</Loading>}
+          {error && <Error>Opps! Error loading a gif</Error>}
+          {randomDogImage && !loading && (
+            <img alt="Here's a good boye!" src={randomDogImage && randomDogImage.message} />
+          )}
+        </div>
       </Body>
     </Page>
   );
