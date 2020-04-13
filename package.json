@@ -17,7 +17,7 @@
     "camelcase": "^5.3.1",
     "history": "^4.10.1",
     "less": "^3.10.3",
-    "next": "^9.1.1",
+    "next": "^9.3.2",
     "next-compose-plugins": "^2.2.0",
     "next-redux-saga": "^4.0.2",
     "next-redux-wrapper": "^4.0.1",
