@@ -69,5 +69,7 @@ module.exports = withPlugins(
       // Will be available on both server and client
       staticFolder: 'public/static',
     },
+    exportTrailingSlash: true,
+    pageExtensions: ['tsx'],
   }
 );

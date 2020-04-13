@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "export": "npm run build && next export",
     "start": "next start -p 3001",
     "analyze": "cross-env ANALYZE=1 next build && cat .next/stats.txt",
     "lint": "eslint --ignore-path .gitignore ."
