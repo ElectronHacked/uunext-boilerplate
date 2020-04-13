@@ -1,0 +1,82 @@
+[{
+    "name": "option1",
+    "linkTo": "/",
+    "icon": "pie-chart",
+    "displayName": "Option 1"
+  },
+  {
+    "name": "option2",
+    "linkTo": "/",
+    "icon": "StepForwardOutlined",
+    "displayName": "Option 2"
+  },
+  {
+    "name": "user",
+    "linkTo": "/",
+    "icon": "user",
+    "displayName": "User",
+    "children": [{
+        "name": "tom",
+        "linkTo": "/",
+        "icon": "",
+        "displayName": "Tom"
+      },
+      {
+        "name": "bill",
+        "linkTo": "/",
+        "icon": "",
+        "displayName": "Bill"
+      },
+      {
+        "name": "alex",
+        "linkTo": "/",
+        "icon": "",
+        "displayName": "Alex"
+      }
+    ]
+  },
+  {
+    "name": "team",
+    "linkTo": "/",
+    "icon": "team",
+    "displayName": "Team",
+    "children": [{
+        "name": "team1",
+        "linkTo": "/",
+        "icon": "",
+        "displayName": "Team 1",
+        "children": [{
+            "name": "team1",
+            "linkTo": "/",
+            "icon": "",
+            "displayName": "Team 1"
+          },
+          {
+            "name": "team2",
+            "linkTo": "/",
+            "icon": "",
+            "displayName": "Team 2"
+          },
+          {
+            "name": "team3",
+            "linkTo": "/",
+            "icon": "",
+            "displayName": "Team 3"
+          }
+        ]
+      },
+      {
+        "name": "team2",
+        "linkTo": "/",
+        "icon": "",
+        "displayName": "Team 2"
+      },
+      {
+        "name": "team3",
+        "linkTo": "/",
+        "icon": "",
+        "displayName": "Team 3"
+      }
+    ]
+  }
+]
