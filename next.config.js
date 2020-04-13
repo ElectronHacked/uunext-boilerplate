@@ -63,10 +63,6 @@ module.exports = withPlugins(
         });
       }
 
-      if (ANALYZE) {
-        config.plugins.push(new WebpackBundleSizeAnalyzerPlugin('stats.txt'));
-      }
-
       return config;
     },
     publicRuntimeConfig: {

@@ -28,7 +28,7 @@ class MyApp extends App {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <CustomErrorBoundary>
-            <RestfulProvider base="https://dog.ceo/api" onRequest={(r) => {}}>
+            <RestfulProvider base="https://dog.ceo/api">
               <Component {...pageProps} />
             </RestfulProvider>
           </CustomErrorBoundary>
