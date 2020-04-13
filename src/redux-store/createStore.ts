@@ -22,7 +22,8 @@ export function configureStore() {
   const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['route'],
+    blacklist: ['route'],
+    // whitelist: ['route'],
   };
 
   const persistedReducer = persistReducer(persistConfig, rootReducer);

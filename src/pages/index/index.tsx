@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Page } from 'components';
 import { useDispatch } from 'react-redux';
 import { fetchPostsRequest, fetchPostsSuccess } from 'redux-store/posts/actions';
-import { useGet } from 'restful-react';
+import { useGet, useMutate } from 'restful-react';
 import { Button } from 'antd';
 
 const Heading = styled.h1`
@@ -28,7 +28,12 @@ export default () => {
 
   const { data: randomDogImage, loading, error, refetch } = useGet({
     path: 'breeds/image/random',
+    lazy: true,
   });
+
+  const { mutate } = useMutate({ verb: 'POST', path: '/users' });
+
+  mutate({}, { queryParams: {}})
 
   useLayoutEffect(() => {
     dispatch(fetchPostsRequest());

@@ -40,7 +40,7 @@ const flagsReducer = (state: IFlagsState = initialState, { type, payload }: Redu
 
     const FLAGS = type.split('__F__')[1];
 
-    // ["FETCH_USER_SUCCESS", "FETCH_USER", "SUCCESS", index: 0, input: "FETCH_USER_SUCCESS__F__FISA", groups: undefined]
+    // ["FETCH_USER_SUCCESS", "FETCH_USER", "SUCCESS", index: 0, input: "FETCH_USER_SUCCESS__F__SA", groups: undefined]
     const actionMatch = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(type);
 
     const FLAG_ACTION_KEY = camelcase((actionMatch && actionMatch[1]) || ''); //  "FETCH_USER" => fetchUser

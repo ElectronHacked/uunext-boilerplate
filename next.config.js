@@ -4,26 +4,29 @@ const withSass = require('@zeit/next-sass');
 const fs = require('fs');
 const path = require('path');
 const sassExtract = require('sass-extract');
-const {
-  WebpackBundleSizeAnalyzerPlugin
-} = require('webpack-bundle-size-analyzer');
-const {
-  ANALYZE
-} = process.env
-
-const themeVariables = sassExtract.renderSync({
-  file: './src/styles/_theme.scss',
-}, {
-  plugins: [{
-    plugin: 'sass-extract-js',
-    options: {
-      camelCase: false,
-    },
-  }, ],
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
 });
+
+const themeVariables = sassExtract.renderSync(
+  {
+    file: './src/styles/_theme.scss',
+  },
+  {
+    plugins: [
+      {
+        plugin: 'sass-extract-js',
+        options: {
+          camelCase: false,
+        },
+      },
+    ],
+  }
+);
 
 module.exports = withPlugins(
   [
+    [withBundleAnalyzer],
     [withSass],
     [
       withLess,
@@ -34,10 +37,9 @@ module.exports = withPlugins(
         },
       },
     ],
-  ], {
-    webpack: (config, {
-      isServer
-    }) => {
+  ],
+  {
+    webpack: (config, { isServer }) => {
       if (isServer) {
         const antStyles = /antd\/.*?\/style.*?/;
         const origExternals = [...config.externals];
@@ -62,7 +64,7 @@ module.exports = withPlugins(
       }
 
       if (ANALYZE) {
-        config.plugins.push(new WebpackBundleSizeAnalyzerPlugin('stats.txt'))
+        config.plugins.push(new WebpackBundleSizeAnalyzerPlugin('stats.txt'));
       }
 
       return config;

@@ -3,8 +3,8 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { LayoutHeader, LayoutHeaderTitle, SidebarMenuLink } from './styled';
 import { ILayoutHeadProps } from 'models/layoutHeadProps';
 import Head from './head';
-import { APP_ROUTES } from 'routes';
 import { IRoute } from 'models';
+import { APP_ROUTES } from 'routes';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -52,7 +52,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ title, children }) => {
       <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
         <div className="logo" />
         <Menu theme="dark" defaultSelectedKeys={[APP_ROUTES[0].name]} mode="inline">
-          {APP_ROUTES.map(route => renderMenuItem(route))}
+          {APP_ROUTES.map((route: IRoute) => renderMenuItem(route))}
         </Menu>
       </Sider>
       <Layout>
