@@ -1,19 +1,19 @@
 [{
     "name": "option1",
     "linkTo": "/",
-    "icon": "pie-chart",
+    "icon": "<PieChartOutlined />",
     "displayName": "Option 1"
   },
   {
     "name": "option2",
     "linkTo": "/",
-    "icon": "StepForwardOutlined",
+    "icon": "<StepForwardOutlined />",
     "displayName": "Option 2"
   },
   {
     "name": "user",
     "linkTo": "/",
-    "icon": "user",
+    "icon": "<UserOutlined />",
     "displayName": "User",
     "children": [{
         "name": "tom",
@@ -38,7 +38,7 @@
   {
     "name": "team",
     "linkTo": "/",
-    "icon": "team",
+    "icon": "<TeamOutlined />",
     "displayName": "Team",
     "children": [{
         "name": "team1",

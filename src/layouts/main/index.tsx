@@ -1,10 +1,11 @@
 import React, { useState, FC, ReactNode } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 import { LayoutHeader, LayoutHeaderTitle, SidebarMenuLink } from './styled';
 import { ILayoutHeadProps } from 'models/layoutHeadProps';
 import Head from './head';
 import { IRoute } from 'models';
 import { APP_ROUTES } from 'routes';
+import { UserOutlined } from '@ant-design/icons';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -24,7 +25,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ title, children }) => {
           key={name}
           title={
             <span>
-              {icon && <Icon type={icon} />}
+              {icon && <UserOutlined translate={false} />}
               <span>
                 <SidebarMenuLink href={linkTo}>{displayName}</SidebarMenuLink>
               </span>
@@ -38,7 +39,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ title, children }) => {
 
     return (
       <Menu.Item key={name}>
-        {icon && <Icon type={icon} />}
+        {icon && <UserOutlined translate={false} />}
         <span>
           <SidebarMenuLink href={linkTo}>{displayName}</SidebarMenuLink>
         </span>
