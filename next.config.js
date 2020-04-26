@@ -4,6 +4,7 @@ const withSass = require('@zeit/next-sass');
 const fs = require('fs');
 const path = require('path');
 const sassExtract = require('sass-extract');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -60,6 +61,28 @@ module.exports = withPlugins(
         config.module.rules.unshift({
           test: antStyles,
           use: 'null-loader',
+        });
+
+        config.plugins.push(
+          new ExtractCssChunks({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: '[name].css',
+            chunkFilename: '[id].css',
+          })
+        );
+
+        config.module.rules.push({
+          test: /\.css$/,
+          use: [
+            {
+              loader: ExtractCssChunks.loader,
+              options: {
+                publicPath: '/public/static',
+              },
+            },
+            'css-loader',
+          ],
         });
       }
 

@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { LayoutHeader, LayoutHeaderTitle, SidebarMenuLink } from './styled';
 import { ILayoutHeadProps } from 'models/layoutHeadProps';
 import Head from './head';
-import { IRoute } from 'models';
+import { INavLink } from 'models';
 import { APP_ROUTES } from 'routes';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -17,7 +17,7 @@ interface IMainLayoutProps extends ILayoutHeadProps {
 const MainLayout: FC<IMainLayoutProps> = ({ title, children }) => {
   const [collapsed, toggleCollapsed] = useState(false);
 
-  const renderMenuItem = (route: IRoute) => {
+  const renderMenuItem = (route: INavLink) => {
     const { name, icon, linkTo, displayName, children } = route;
     if (children && children.length) {
       return (
@@ -53,7 +53,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ title, children }) => {
       <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
         <div className="logo" />
         <Menu theme="dark" defaultSelectedKeys={[APP_ROUTES[0].name]} mode="inline">
-          {APP_ROUTES.map((route: IRoute) => renderMenuItem(route))}
+          {APP_ROUTES.map((route: INavLink) => renderMenuItem(route))}
         </Menu>
       </Sider>
       <Layout>
