@@ -18,7 +18,7 @@
     "extract-css-chunks-webpack-plugin": "^4.7.4",
     "history": "^4.10.1",
     "less": "^3.10.3",
-    "next": "^9.3.5",
+    "next": "^13.0.4",
     "next-compose-plugins": "^2.2.0",
     "next-redux-saga": "^4.0.2",
     "next-redux-wrapper": "^4.0.1",
